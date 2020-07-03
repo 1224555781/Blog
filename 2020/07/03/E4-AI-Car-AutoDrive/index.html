@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta name="renderer" content="webkit">
@@ -18,7 +16,9 @@
 
   <!-- 页面元数据 -->
   
-    <title>Archive: 2020 - MLB</title>
+    <title>UE4 AI_Car_AutoDrive - MLB</title>
+  
+    <meta name="keywords" content="AI">
   
   
 
@@ -70,81 +70,7 @@
 
 <body>
   
-  <div class="cover-wrapper">
-    
-      <cover class='cover  half'>
-        <div class='cover-body'>
-  <div class='a'>
-    
-    
-      <p class="title">学习使人快乐</p>
-    
-    
-      <p class="subtitle">Best Wishs To You</p>
-    
-  </div>
-  <div class='b'>
-    
-      <div class="m_search">
-        <form name="searchform" class="form u-search-form">
-          <input type="text" class="input u-search-input" placeholder="" />
-          <i class="icon fas fa-search fa-fw"></i>
-        </form>
-      </div>
-    
-    <div class='menu navigation'>
-      <ul class='cover-list-h'>
-        
-          
-            <li>
-              <a class="nav home"
-                href="https://volantis.js.org/getting-started/"
-                
-                
-                id="https:volantisjsorggetting-started">
-                <i class='fas fa-book fa-fw'></i>文档
-              </a>
-            </li>
-          
-            <li>
-              <a class="nav home"
-                href="https://volantis.js.org/archives/"
-                
-                
-                id="https:volantisjsorgarchives">
-                <i class='fas fa-rss fa-fw'></i>博文
-              </a>
-            </li>
-          
-            <li>
-              <a class="nav home"
-                href="https://volantis.js.org/examples/"
-                
-                
-                id="https:volantisjsorgexamples">
-                <i class='fas fa-play-circle fa-fw'></i>示例
-              </a>
-            </li>
-          
-            <li>
-              <a class="nav home"
-                href="https://github.com/xaoxuu/hexo-theme-volantis/"
-                
-                
-                id="https:githubcomxaoxuuhexo-theme-volantis">
-                <i class='fas fa-file-code fa-fw'></i>源码
-              </a>
-            </li>
-          
-        
-      </ul>
-    </div>
-  </div>
-</div>
-
-      </cover>
-    
-    <div id="loading-bar-wrapper">
+  <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
 </div>
 <header class="l_header shadow blur">
@@ -397,34 +323,18 @@
 
 <script>setLoadingBarProgress(40);</script>
 
-  </div>
 
 
-  <div class="l_body">
+  <div class="l_body nocover">
     <div class='body-wrapper'>
       
 
 <div class='l_main'>
-	
-		
-  <section class="post-list ">
-    
-      
-        
-          
-        
-          
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
   
+
+  
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
 
 
   <section class='meta'>
@@ -434,11 +344,11 @@
       <div class="meta" id="header-meta">
         
           
-  <h2 class="title">
+  <h1 class="title">
     <a href="/2020/07/03/E4-AI-Car-AutoDrive/">
       UE4 AI_Car_AutoDrive
     </a>
-  </h2>
+  </h1>
 
 
         
@@ -485,11 +395,6 @@
 
             
           
-            
-              
-
-            
-          
         </div>
         
           <hr>
@@ -499,10 +404,10 @@
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="AI车辆"><a href="#AI车辆" class="headerlink" title="AI车辆"></a>AI车辆</h3><p>&nbsp;&nbsp;UE4 的AI系统不支持UWheeledVehicleMovementComponent 驱动Pawn, 所以这就很类似飞行AI.不同的是 车辆AI可以使用UE4的寻路系统寻点会简单很多,A*寻路<br><img src="/2020/07/03/E4-AI-Car-AutoDrive/%5Cimages%5Cpasted-2.Jpg%5C" alt="upload successful"></p>
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <h3 id="AI车辆"><a href="#AI车辆" class="headerlink" title="AI车辆"></a>AI车辆</h3><p>&nbsp;&nbsp;UE4 的AI系统不支持UWheeledVehicleMovementComponent 驱动Pawn, 所以这就很类似飞行AI.不同的是 车辆AI可以使用UE4的寻路系统寻点会简单很多,A*寻路<br><img src="/2020/07/03/E4-AI-Car-AutoDrive/%5Cimages%5Cpasted-2.Jpg%5C" alt="upload successful"></p>
 <p>UE4的车辆系统中的输入跟普通的移动组件差别很大,改变方向只能依靠方向盘左右打方向输入,也就是只能输入一个布尔值判定转向.在一个简单的AI车辆中核心也就只是判断左右了,如果对初始位置需求不高,那么可以采用计算车辆方向和车辆到目标方向的角度差值判定左右由于实用性很小代码就不贴了.</p>
 <h3 id="目标点方向判定"><a href="#目标点方向判定" class="headerlink" title="目标点方向判定"></a>目标点方向判定</h3><p> 方法很多这里贴个自己傻点的方法,以后再次遇到再想办法改善</p>
 <p> 我尝试许多方法都没法判断左右,因为车在移动那么与目标之间的Rotation 在改变,车本身也在转动去寻找到正确的旋转,所以通过点乘运算计算是否需要打方向,根据判断的左右计算出最近的方向,如果需要更智能AI车辆应该需要判断到再下一个目标点进行运算方向和速度,避免急刹车</p>
@@ -510,280 +415,45 @@
 
 <p> 方向判定<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"> bool AVRWheeledVehicle::Dir_SteeringWheel(const FVector&amp; CarForwardVector, const FVector&amp; DestVector)</span><br><span class="line">&#123;</span><br><span class="line">    if (!CarForwardVector.IsNormalized() || !DestVector.IsNormalized())</span><br><span class="line">    &#123;</span><br><span class="line">        ensure(0);</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;explicit FORCEINLINE FVector2D(const FVector&amp; V);</span><br><span class="line">    &#x2F;&#x2F;explicit 显示转换  可以使用缺省构造 如: FVector2D CarVector2D&#x3D;CarForwardVector</span><br><span class="line">    &#x2F;&#x2F;explicit 只在单个构造参数时生效  0 OR 多个也无法缺省构造 FVector2D 	      	  </span><br><span class="line">    FVector2D CarVector2D&#x3D;FVector2D(CarForwardVector);</span><br><span class="line">    FVector2D DestVector2D&#x3D;FVector2D(DestVector);</span><br><span class="line">    CarQuadrant&#x3D;GetVectorQuadrant(CarVector2D);</span><br><span class="line">    DestQuadrant&#x3D;GetVectorQuadrant(DestVector2D);</span><br><span class="line">    &#x2F;&#x2F;print(TEXT(&quot;DirStart&quot;) + CarVector2D.ToString());</span><br><span class="line">    switch (CarQuadrant)</span><br><span class="line">    &#123;</span><br><span class="line">    case EQuadrant::FirstQuadrant:</span><br><span class="line">        if (</span><br><span class="line">            DestQuadrant&#x3D;&#x3D;EQuadrant::SecondQuadrant ||</span><br><span class="line">           (DestQuadrant&#x3D;&#x3D;EQuadrant::ThirdQuadrant &amp;&amp;</span><br><span class="line">           FMath::Abs(DestVector2D.Y) &lt; FMath::Abs(DestVector2D.X))</span><br><span class="line">           )</span><br><span class="line">        &#123;</span><br><span class="line">            return  true;</span><br><span class="line">        &#125;else if(DestQuadrant&#x3D;&#x3D;EQuadrant::FourthQuadrant)</span><br><span class="line">        &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125; &#x2F;&#x2F;All In The Same Quadrant</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            if (DestVector2D.Y&gt;CarVector2D.Y)</span><br><span class="line">            &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        break;</span><br><span class="line">    case EQuadrant::SecondQuadrant:</span><br><span class="line">        if (</span><br><span class="line">            DestQuadrant&#x3D;&#x3D;EQuadrant::FirstQuadrant ||</span><br><span class="line">            (DestQuadrant&#x3D;&#x3D;EQuadrant::FourthQuadrant &amp;&amp;</span><br><span class="line">            FMath::Abs(DestVector2D.Y) &gt; FMath::Abs(DestVector2D.X))</span><br><span class="line">            )</span><br><span class="line">        &#123;</span><br><span class="line">            return  false;</span><br><span class="line">        &#125;else if(DestQuadrant&#x3D;&#x3D;EQuadrant::ThirdQuadrant)</span><br><span class="line">        &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125; &#x2F;&#x2F;All In The Same Quadrant</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            if (DestVector2D.Y&gt;CarVector2D.Y)</span><br><span class="line">            &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        break;</span><br><span class="line">    case EQuadrant::ThirdQuadrant:</span><br><span class="line">    </span><br><span class="line">        if (</span><br><span class="line">            DestQuadrant&#x3D;&#x3D;EQuadrant::SecondQuadrant ||</span><br><span class="line">            (DestQuadrant&#x3D;&#x3D;EQuadrant::FirstQuadrant &amp;&amp;</span><br><span class="line">            FMath::Abs(DestVector2D.Y) &gt; FMath::Abs(DestVector2D.X))</span><br><span class="line">            )</span><br><span class="line">        &#123;</span><br><span class="line">            return  false;</span><br><span class="line">        &#125;else if(DestQuadrant&#x3D;&#x3D;EQuadrant::FourthQuadrant)</span><br><span class="line">        &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125; &#x2F;&#x2F;All In The Same Quadrant</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            if (FMath::Abs(DestVector2D.Y) &gt; FMath::Abs(CarVector2D.Y))</span><br><span class="line">            &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        break;</span><br><span class="line">    case EQuadrant::FourthQuadrant: </span><br><span class="line"></span><br><span class="line">        if (</span><br><span class="line">            DestQuadrant&#x3D;&#x3D;EQuadrant::ThirdQuadrant ||</span><br><span class="line">            (DestQuadrant&#x3D;&#x3D;EQuadrant::SecondQuadrant &amp;&amp;</span><br><span class="line">            FMath::Abs(DestVector2D.X) &lt; FMath::Abs(DestVector2D.Y))</span><br><span class="line">            )</span><br><span class="line">        &#123;</span><br><span class="line">            return  false;</span><br><span class="line">        &#125;else if(DestQuadrant&#x3D;&#x3D;EQuadrant::FirstQuadrant)</span><br><span class="line">        &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125; &#x2F;&#x2F;All In The Same Quadrant</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            if (FMath::Abs(DestVector2D.Y) &gt; FMath::Abs(CarVector2D.Y))</span><br><span class="line">            &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        break;</span><br><span class="line">        </span><br><span class="line">    default:</span><br><span class="line">        return  false;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;判定当前象限</span><br><span class="line">EQuadrant AVRWheeledVehicle::GetVectorQuadrant(const FVector2D&amp; InVector2D)</span><br><span class="line">&#123;</span><br><span class="line">    if(InVector2D.X&gt;0 &amp;&amp; InVector2D.Y&gt;0)</span><br><span class="line">    &#123;</span><br><span class="line">        return  EQuadrant::FirstQuadrant;</span><br><span class="line">    &#125;</span><br><span class="line">    else if(InVector2D.X&lt;0 &amp;&amp; InVector2D.Y&gt;0)</span><br><span class="line">    &#123;</span><br><span class="line">        return  EQuadrant::SecondQuadrant;</span><br><span class="line">    &#125;</span><br><span class="line">    else if(InVector2D.X &lt; 0 &amp;&amp; InVector2D.Y &lt; 0)</span><br><span class="line">    &#123;</span><br><span class="line">        return EQuadrant::ThirdQuadrant;</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        return EQuadrant::FourthQuadrant;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br> UE4车辆在输入踩刹车事件时要油门输入关闭,大概的都参考科目三考试</p>
 
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
           
-  <h2 class="title">
-    <a href="/2020/05/29/hello-world/">
-      Hello World
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
+            <div class='article_footer'>
               
-<div class='new-meta-item author'>
-  <a href="" rel="nofollow">
-    <img src="">
-    <p></p>
-  </a>
-</div>
-
-            
-          
-            
-              
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/UE4/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>UE4</p>
-    </a>
-  </div>
-
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：May 29, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Hello-ZXM"><a href="#Hello-ZXM" class="headerlink" title="Hello ZXM"></a>Hello ZXM</h2>
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
-  
-
-
-  <section class='meta'>
-    
-      
-      
-      <div class="meta" id="header-meta">
-        
-          
-  <h2 class="title">
-    <a href="/2020/05/27/MLB/">
-      MLB
-    </a>
-  </h2>
-
-
-        
-        <div class='new-meta-box'>
-          
-            
-          
-            
-              
-<div class='new-meta-item author'>
-  <a href="" rel="nofollow">
-    <img src="">
-    <p></p>
-  </a>
-</div>
-
-            
-          
-            
-              
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/MLB-527/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>MLB_527</p>
-    </a>
-  </div>
-
-
-            
-          
-            
-              <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：May 27, 2020</p>
-  </a>
-</div>
-
-            
-          
-            
-              
-
-            
-          
-            
-              
-
-            
-          
-        </div>
-        
-          <hr>
-        
-      </div>
-    
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="MLB-First-Blog"><a href="#MLB-First-Blog" class="headerlink" title="MLB_First_Blog"></a>MLB_First_Blog</h2><h3 id="For-Test"><a href="#For-Test" class="headerlink" title="For Test"></a>For Test</h3><p>Success <strong><strong><strong>____</strong></strong></strong>o.O </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Bash            ????</span><br></pre></td></tr></table></figure>
-<h2 id="Deploy-It"><a href="#Deploy-It" class="headerlink" title="Deploy It"></a>Deploy It</h2><p>My .<a href="https://github.com/1224555781" target="_blank" rel="noopener">GitHub</a> there is nothing.</p>
-
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-    
-    
-
-  
-
-
-	
-</div>
-<aside class='l_side'>
-  
+                
   
     
     
 
-<section class="widget blogger shadow desktop mobile">
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
   <div class='content'>
     
-      
-        <a class='avatar flat-box' href='/about/'>
-          <img no-lazy src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/avatar/avatar.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">MLB</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
+      <blockquote>
         
           
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
           
         
           
-            <a href="mailto:me@xaoxuu.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
+            <p>本文永久链接是：<a href=http://mlb996.top/2020/07/03/E4-AI-Car-AutoDrive/>http://mlb996.top/2020/07/03/E4-AI-Car-AutoDrive/</a></p>
           
         
-          
-            <a href="https://github.com/xaoxuu"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-          
-            <a href="https://music.163.com/#/user/home?id=63035382"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-      </div>
+      </blockquote>
     
   </div>
 </section>
@@ -793,58 +463,200 @@
   
     
     
+
+<section class="widget qrcode  desktop mobile">
   
 
-  <section class="widget category shadow desktop">
+  <div class='content article-entry'>
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+      
+        <div class='fancybox'><img src='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/qrcode/wiki_volantis.png'
+        
+          height='64px'
+        ></div>
+      
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-03T19:40:14+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jul 3, 2020</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/AI/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>AI</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://mlb996.top/2020/07/03/E4-AI-Car-AutoDrive/&title=UE4 AI_Car_AutoDrive - MLB&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://mlb996.top/2020/07/03/E4-AI-Car-AutoDrive/&title=UE4 AI_Car_AutoDrive - MLB&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=http://mlb996.top/2020/07/03/E4-AI-Car-AutoDrive/&title=UE4 AI_Car_AutoDrive - MLB&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+            
+              <a class='next' href='/2020/05/29/hello-world/'>
+                <p class='title'>Hello World<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>Hello ZXM</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'UE4 AI_Car_AutoDrive',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+  
+
+  
+    
+    
+
+
+  <section class="widget toc-wrapper shadow desktop mobile">
     
   <header>
     
-      <a href='/categories'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/MLB-527/" href="/categories/MLB-527/"
-            id="categoriesMLB-527"
-            ><div class='name'>MLB_527</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/UE4/" href="/categories/UE4/"
-            id="categoriesUE4"
-            ><div class='name'>UE4</div><div class='badge'>(2)</div></a></li>
-        
-      </ul>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#AI车辆"><span class="toc-text">AI车辆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#目标点方向判定"><span class="toc-text">目标点方向判定</span></a></li></ol>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/tags'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/AI/" style="font-size: 14px; color: #999">AI</a> <a href="/tags/test/" style="font-size: 14px; color: #999">test</a>
-    </div>
-  </section>
-
-
-  
 
   
 
@@ -943,14 +755,6 @@
   </footer>
 
 <script>setLoadingBarProgress(80);</script>
-
-
-
-
-	<!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-	
-
-	
 
 
       <script>setLoadingBarProgress(60);</script>
@@ -1065,6 +869,60 @@
 
 
 
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
+
+  
+  <script>
+  var GUEST_INFO = ['nick','mail','link'];
+  var meta = 'nick,mail,link'.split(',').filter(function(item){
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick','mail','link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function(item){
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+  var valine = new Valine();
+  function emoji(path, idx, ext) {
+      return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  valine.init({
+    el: '#valine_container',
+    meta: meta,
+    
+    appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+    appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+    placeholder: "快来评论吧~",
+    pageSize:'10',
+    avatar:'robohash',
+    lang:'zh-cn',
+    visitor: 'true',
+    highlight: 'true',
+    mathJax: 'false',
+    enableQQ: 'true',
+    requiredFields: requiredFields,
+    emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+    emojiMaps: emojiMaps
+  })
+  </script>
 
 
 
