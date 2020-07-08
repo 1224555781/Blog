@@ -593,7 +593,7 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="AI车辆"><a href="#AI车辆" class="headerlink" title="AI车辆"></a>AI车辆</h3><p>&nbsp;&nbsp;UE4 的AI系统不支持UWheeledVehicleMovementComponent 驱动Pawn, 所以这就很类似飞行AI.不同的是 车辆AI可以使用UE4的寻路系统寻点会简单很多,A*寻路<br><img src="/2020/07/03/E4-AI-Car-AutoDrive/pasted-2.png" alt="图片"></p>
+        <h3 id="AI车辆"><a href="#AI车辆" class="headerlink" title="AI车辆"></a>AI车辆</h3><p>&nbsp;&nbsp;UE4 的AI系统不支持UWheeledVehicleMovementComponent 驱动Pawn, 所以这就很类似飞行AI.不同的是 车辆AI可以使用UE4的寻路系统寻点会简单很多,A*寻路<br><img src="/2020/07/03/E4-AI-Car-AutoDrive/pasted-2.png" alt="最简单的A星寻路"></p>
 <p>UE4的车辆系统中的输入跟普通的移动组件差别很大,改变方向只能依靠方向盘左右打方向输入,也就是只能输入一个布尔值判定转向.在一个简单的AI车辆中核心也就只是判断左右了,如果对初始位置需求不高,那么可以采用计算车辆方向和车辆到目标方向的角度差值判定左右由于实用性很小代码就不贴了.</p>
 <h3 id="目标点方向判定"><a href="#目标点方向判定" class="headerlink" title="目标点方向判定"></a>目标点方向判定</h3><p> 方法很多这里贴个自己的方法</p>
 <p> 我尝试许多方法都没法判断左右,因为车在移动那么与目标之间的Rotation 在改变,车本身也在转动去寻找到正确的旋转,所以通过点乘运算计算是否需要打方向,根据判断的左右计算出最近的方向,如果需要更智能AI车辆应该需要判断到再下一个目标点进行运算方向和速度,避免急刹车</p>
