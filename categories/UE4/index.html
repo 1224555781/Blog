@@ -342,9 +342,212 @@
         
           
         
+          
+        
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/07/16/R%E4%B8%AD%E6%97%8B%E8%BD%AC%E7%89%A9%E4%BD%93-Follow-MotionController/">
+      VR中旋转物体(Follow MotionController)
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="" rel="nofollow">
+    <img src="">
+    <p></p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/UE4/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>UE4</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 16, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在VR中通常会有门窗柜子之类不需要移动只需要旋转的物体.<br> 这里记录一个算法计算旋转.这并不多余,虽然可以使用到物理约束完成同样的操作但是毫无复用性.</p>
+<p>&amp;nbsp &amp;nbsp 算法是我自己一个人复制下来的核心函数并简单解释免得我莫某人以后肯定会忘啊</p>
+<p>  初始化记录数据<br>OnGrip<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F;抓取时手的相对于被抓物体的2D角度值 tan(Y&#x2F;X) </span><br><span class="line"> &#x2F;&#x2F; </span><br><span class="line"> &#x2F;&#x2F;对于当前物体transform 只能用父类为基准的worldTransform 不能直接去获取worldTransform </span><br><span class="line"> </span><br><span class="line"> CurrentRelativeTransform &#x3D; this-&gt;GetRelativeTransform() * ParentTransform();</span><br><span class="line"> </span><br><span class="line"> &#x2F;&#x2F;转换为相对Location</span><br><span class="line">InitialInteractorLocation &#x3D;  以被抓取物体的worldtransform 转化为相对位置 参考InversTransformPosition</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;握取的轴点相对于被抓物体的 角度值</span><br><span class="line">float InitAngleXY Atan2(InitialInteractorLocation.Y&#x2F;InitialInteractorLocation.X)*180&#x2F;PI;</span><br><span class="line"> </span><br><span class="line"> &#x2F;&#x2F;自身初始角度值</span><br><span class="line"> &#x2F;&#x2F;</span><br><span class="line"> float InitAngleSelf &#x3D; 获取到当前的四元数 使用 ToAxisAndAngles 即可分离出轴向和角度</span><br></pre></td></tr></table></figure></p>
+<p>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最核心的思想就是转化为相对于被抓物体的相对位置然后去计算2D的角度值<br>  再根据计算的相对2D的角度值改变自身旋转的角度值.这个方案会发生万向锁问题.但是基本可以<br>  应用于绝大部分场景.Z轴跟XY轴的计算相对角度值是相反的</p>
+<p>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最重要的就是….一定不能再tick 计算实时被抓物体需要旋转时使用被抓物体的worldtransform<br>  如果是root可以直接用,不是的话 就得用 相对于父类的世界坐标</p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/07/08/E4-%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/">
+      UE4 小知识点
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="" rel="nofollow">
+    <img src="">
+    <p></p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/UE4/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>UE4</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jul 8, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="SetTimer中的lambda"><a href="#SetTimer中的lambda" class="headerlink" title="SetTimer中的lambda"></a>SetTimer中的lambda</h2><p>  如果引用到 local variable值时去使用lambda 函数 有几率触发UE4中的lambda BUG,就是不报任何错误,却不执行逻辑. 还有就是去lambda中获取GamePlayStatics中引用时会触发相同问题<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; Error   CameraManger有效  , ExecLambda 打印成功</span><br><span class="line">  </span><br><span class="line">  GetWorld()-&gt;GetTimerManager().SetTimer(Handle,FTimerDelegate::Lambda(this,&amp;UVRCore::FadeOutCamera,DurationTime,DelayTime,Color)</span><br><span class="line">&#x2F;*([&amp;]()</span><br><span class="line">&#123;</span><br><span class="line">	print(TEXT(&quot;ExecLambda&quot;))</span><br><span class="line">    APlayerCameraManager* CameraManagers&#x3D;static_cast&lt;APlayerCameraManager*&gt;(UGameplayStatics::GetPlayerCameraManager(this,0));</span><br><span class="line">    if (!CameraManagers)</span><br><span class="line">    &#123;</span><br><span class="line">    	print(TEXT(&quot;CameraManger Not Valid&quot;))</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    CameraManagers-&gt;StartCameraFade(1,0,DurationTime,Color,false,true);</span><br><span class="line">&#125;)*&#x2F;,1.f,false,DelayTime);</span><br></pre></td></tr></table></figure></p>
+<p>  他不行</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  GetWorld()-&gt;GetTimerManager().SetTimer(Handle,FTimerDelegate::CreateUObject(this,&amp;UVRCore::FadeOutCamera,DurationTime,DelayTime,Color)</span><br><span class="line">,1.f,false,DelayTime);</span><br></pre></td></tr></table></figure>
+<p>  他行</p>
+<h2 id="关于AI中的-Nav-agents使用问题"><a href="#关于AI中的-Nav-agents使用问题" class="headerlink" title="关于AI中的 Nav agents使用问题"></a>关于AI中的 Nav agents使用问题</h2><p> 定义三个代理</p>
+<p><img src="/2020/07/08/E4-%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/pasted-3.png" alt="三个代理"><br>并且都启用</p>
+<p><img src="/2020/07/08/E4-%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/pasted-4.png" alt="图片"></p>
+<p>在使用时并不是选择某一个去使用,check? 不行. 他会自动选择合适的去选择…很坑</p>
+<h1 id="后续待更新"><a href="#后续待更新" class="headerlink" title="后续待更新"></a>后续待更新</h1>
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -646,7 +849,7 @@
           <li><a class="flat-box"
             title="/categories/UE4/" href="/categories/UE4/"
             id="categoriesUE4"
-            ><div class='name'>UE4</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>UE4</div><div class='badge'>(4)</div></a></li>
         
       </ul>
     </div>
@@ -670,7 +873,7 @@
 
 
     <div class='content'>
-      <a href="/tags/AI/" style="font-size: 14px; color: #999">AI</a> <a href="/tags/test/" style="font-size: 14px; color: #999">test</a>
+      <a href="/tags/AI/" style="font-size: 14px; color: #999">AI</a> <a href="/tags/test/" style="font-size: 14px; color: #999">test</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0/" style="font-size: 14px; color: #999">日常学习</a>
     </div>
   </section>
 
