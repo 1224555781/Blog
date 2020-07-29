@@ -612,6 +612,8 @@
 <p><img src="/2020/07/08/E4-%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/pasted-3.png" alt="三个代理"><br>并且都启用</p>
 <p><img src="/2020/07/08/E4-%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/pasted-4.png" alt="图片"></p>
 <p>在使用时并不是选择某一个去使用,check? 不行. 他会自动选择合适的去选择…很坑</p>
+<h1 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h1><p>经典起手 ———————————— As We Know  </p>
+<p>  UE4中的网络函数无返回值, 那就用引用和指针去赋值了..结果很不理想 下面给个示例,代码不重要<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">void AVRPlayerController::Muti_PlaySound_WithLocation_Implementation(UObject* WorldContext, USoundBase* Cue, const FSoundInfo&amp; SoundInfo,UAudioComponent* AudioComp)</span><br><span class="line">&#123;</span><br><span class="line">	&#x2F;&#x2F;下面是断点 </span><br><span class="line">	AudioComp &#x3D; UGameplayStatics::SpawnSoundAtLocation(WorldContext, Cue, SoundInfo.Location, 	FRotator::ZeroRotator, SoundInfo.Volume, SoundInfo.Pitch, SoundInfo.StartTime, SoundInfo.SoundAttention, nullptr, false);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>这段代码运行时会即时触发到断点. 但是在SpawnAtLoaction中的断点不是即时的延迟大概10ms的样子,所以赋值失败.<br>   　　所以赋值失败的原因就是网络函数是异步的，从一端到另一端总是需要时间的做不到即时响应，当它有值了，赋值代码却已经错过了．</p>
 <h1 id="后续待更新"><a href="#后续待更新" class="headerlink" title="后续待更新"></a>后续待更新</h1>
       
     </div>
