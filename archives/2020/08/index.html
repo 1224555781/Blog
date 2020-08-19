@@ -18,7 +18,7 @@
 
   <!-- 页面元数据 -->
   
-    <title>Archive - MLB</title>
+    <title>Archive: 2020/8 - MLB</title>
   
   
 
@@ -364,99 +364,122 @@
 
 <div class='l_main'>
 	
-	  <article id="archive-page" class="post article white-box reveal shadow">
-	    <section class="archive">
-	      
-	          <div class="archive-item archive-year mark">
-	            <h2>2020</h2>
-	          </div>
-	      
-	          <div class="archive-item archive-post mark">
-	            <a href="/2020/08/19/QuadTree/">
-	              <time>08-19</time>
-	              <span class="title">
-	                
-	                  QuadTree
-	                
-	                
-									
-									
-	              </span>
-	            </a>
-	          </div>
-	      
-	          <div class="archive-item archive-post mark">
-	            <a href="/2020/07/16/R%E4%B8%AD%E6%97%8B%E8%BD%AC%E7%89%A9%E4%BD%93-Follow-MotionController/">
-	              <time>07-16</time>
-	              <span class="title">
-	                
-	                  VR中旋转物体(Follow MotionController)
-	                
-	                
-									
-									
-	              </span>
-	            </a>
-	          </div>
-	      
-	          <div class="archive-item archive-post mark">
-	            <a href="/2020/07/08/E4-%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/">
-	              <time>07-08</time>
-	              <span class="title">
-	                
-	                  UE4 小知识点
-	                
-	                
-									
-									
-	              </span>
-	            </a>
-	          </div>
-	      
-	          <div class="archive-item archive-post mark">
-	            <a href="/2020/07/03/E4-AI-Car-AutoDrive/">
-	              <time>07-03</time>
-	              <span class="title">
-	                
-	                  UE4 AI_Car_AutoDrive
-	                
-	                
-									
-									
-	              </span>
-	            </a>
-	          </div>
-	      
-	          <div class="archive-item archive-post mark">
-	            <a href="/2020/05/29/hello-world/">
-	              <time>05-29</time>
-	              <span class="title">
-	                
-	                  Hello World
-	                
-	                
-									
-									
-	              </span>
-	            </a>
-	          </div>
-	      
-	          <div class="archive-item archive-post mark">
-	            <a href="/2020/05/27/MLB/">
-	              <time>05-27</time>
-	              <span class="title">
-	                
-	                  MLB
-	                
-	                
-									
-									
-	              </span>
-	            </a>
-	          </div>
-	      
-	    </section>
-	  </article>
+		
+  <section class="post-list ">
+    
+      
+        
+          
+        
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box shadow reveal ">
+  
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h2 class="title">
+    <a href="/2020/08/19/QuadTree/">
+      QuadTree
+    </a>
+  </h2>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="" rel="nofollow">
+    <img src="">
+    <p></p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Aug 19, 2020</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="四叉树"><a href="#四叉树" class="headerlink" title="四叉树"></a>四叉树</h1><p>　　<br>    　　前不久看了５１ｗｏｒｌｄ的一个官方直播。其中谈到了资源的调度主要是使用四叉树来判定资源如何调度。他们做的一个模拟真实世界，资源着实很宝贵。于是产生了学习一下四叉树的想法。　　</p>
+<p>　　ＬＯＤ的应用就是使用的四叉树吧，大胆猜测一波。在源码里我还没见过四叉树。但是八叉树倒是见过，构建寻路导航的时候用的八叉树三维构建嘛。特别是将寻路网格质量调高构建比较缓慢的时候是可以看见他的确是八叉树构建。</p>
+<p>　　先展现一下最后的测试结果<img src="https://cdn.jsdelivr.net/gh/1224555781/Img/QuadTree.png" alt="一棵树"></p>
+<h2 id="开始种树"><a href="#开始种树" class="headerlink" title="开始种树"></a>开始种树</h2><p>   树的结构体,需要4个子节点一个父节点即可，这只是颗简单的树需要的最基础的部分<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">   &#x2F;&#x2F;USTRUCT()</span><br><span class="line">struct FQuadNode</span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line">   &#x2F;&#x2F; GENERATED_USTRUCT_BODY()</span><br><span class="line">public:</span><br><span class="line">    float X;</span><br><span class="line">    float Y;</span><br><span class="line">    float Divide;</span><br><span class="line">    FVector Origin;</span><br><span class="line">    &#x2F;&#x2F;FQuadNode* ChildrenNode[2][2];</span><br><span class="line">    TArray&lt;FQuadNode*&gt;ChildrenNode ;</span><br><span class="line">    FQuadNode* ParentNode;</span><br><span class="line">    bool IsValidNode()</span><br><span class="line">    &#123;</span><br><span class="line">        return !ParentNode ? NULL : FMath::Abs( X &#x2F; 2 &#x2F;*Origin.X - ParentNode-&gt;Origin.X*&#x2F;)  &lt;&#x3D; Divide &amp;&amp; FMath::Abs( Y &#x2F; 2 &#x2F;*Origin.Y - ParentNode-&gt;Origin.Y*&#x2F;)&lt;&#x3D;Divide;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    bool operator &#x3D;&#x3D;(const FQuadNode&amp; Other) const</span><br><span class="line">    &#123;</span><br><span class="line">        return Origin &#x3D;&#x3D; Other.Origin;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    FQuadNode()</span><br><span class="line">        :X(1000),Y(1000),Divide(100)</span><br><span class="line">    &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;Init Child Node</span><br><span class="line">    FQuadNode(float InX,float InY,float InDivide,FVector InOrigin)</span><br><span class="line">        :X(InX),Y(InY),Divide(InDivide),Origin(InOrigin)</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>树的构建，代码只放核心部分。<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> inline void FQuadTree::InitQuandTree(UWorld* world,FQuadNode* Node,FQuadNode* InParentNode)</span><br><span class="line">&#123;</span><br><span class="line">    Node-&gt;ParentNode &#x3D; InParentNode;</span><br><span class="line">    if (Node-&gt;IsValidNode())</span><br><span class="line">    &#123;</span><br><span class="line">        DrawDebugSphere(world,Node-&gt;Origin,15.f,16,FColor::Yellow,true);</span><br><span class="line">        DrawQuandTree(world,Node);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    if(Node &#x3D;&#x3D; NULL)</span><br><span class="line">        return;</span><br><span class="line">    CreateChildNode(Node);</span><br><span class="line">    for (auto a : Node-&gt;ChildrenNode)</span><br><span class="line">    &#123;</span><br><span class="line">        InitQuandTree( world, a ,Node);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>   　　树构建完成后需要知道目标在哪吧，直接每帧遍历是不可能的，卡成ppt（我试过了）。判断距离，判断方位。结合一下基本就是我想到最好的解决方案了。但是多给点时间我也不一定能想到更好的方案。
+     　　</p>
+<p>　　当监测目标进入四叉树区域后开始执行判定人物位置的方位。；例如　＂田＂　这就是四叉树那么递归遍历人物处于　“田”　的哪一区域。直到达到最小区域，然后开始执行判定人物离当前区域中心点的距离。但是这里有瑕疵，有部分灰色区域如图<img src="https://cdn.jsdelivr.net/gh/1224555781/Img/quadtree2.png" alt="丑陋的图"><br>  EMMM红色 红色就是灰色区域会一直执行判定，这点有待改善。下面是两个判定<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">  bool UQuadTreeComponent::CharIsInNodeArea(FQuadNode* Node , FVector Target,float Real_X , float Real_Y) const</span><br><span class="line">&#123;</span><br><span class="line">	return  Target.X &lt;&#x3D; (Node-&gt;Origin.X + Real_X)</span><br><span class="line">    &amp;&amp; Target.Y &lt;&#x3D; ( Node-&gt;Origin.Y + Real_Y)</span><br><span class="line">    &amp;&amp; Target.X &gt;&#x3D; (Node-&gt;Origin.X - Real_X)</span><br><span class="line">    &amp;&amp; Target.Y &gt;&#x3D; (Node-&gt;Origin.Y - Real_Y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">FQuadNode* UQuadTreeComponent::CharIsInChildArea(FQuadNode* Node , FVector CharLoc ) const</span><br><span class="line">&#123;</span><br><span class="line">	FQuadNode* RET &#x3D; Node;</span><br><span class="line">	if (Node-&gt;ChildrenNode.Num() &#x3D;&#x3D; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		return RET;</span><br><span class="line">	&#125;</span><br><span class="line">	if (Node-&gt;Origin.X &lt;&#x3D; CharLoc.X &amp;&amp; Node-&gt;Origin.Y &lt;&#x3D; CharLoc.Y)</span><br><span class="line">	&#123;</span><br><span class="line">		RET &#x3D; Node-&gt;ChildrenNode[0];</span><br><span class="line">	&#125;</span><br><span class="line">	else if (Node-&gt;Origin.X &gt;&#x3D; CharLoc.X &amp;&amp; Node-&gt;Origin.Y &lt;&#x3D; CharLoc.Y)</span><br><span class="line">	&#123;</span><br><span class="line">		RET &#x3D; Node-&gt;ChildrenNode[1];</span><br><span class="line">	&#125;</span><br><span class="line">	else if (Node-&gt;Origin.X &gt;&#x3D; CharLoc.X &amp;&amp; Node-&gt;Origin.Y &gt;&#x3D; CharLoc.Y)</span><br><span class="line">	&#123;</span><br><span class="line">		RET &#x3D; Node-&gt;ChildrenNode[2];</span><br><span class="line">	&#125;</span><br><span class="line">	else if (Node-&gt;Origin.X &lt;&#x3D; CharLoc.X &amp;&amp; Node-&gt;Origin.Y &gt;&#x3D; CharLoc.Y)</span><br><span class="line">	&#123;</span><br><span class="line">		RET &#x3D; Node-&gt;ChildrenNode[3];</span><br><span class="line">	&#125;</span><br><span class="line">	return  RET;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>   于是乎上述代码在极限情况下达到了时间复杂度为树深度的简单算法并且不会每帧去疯狂运算。</p>
+<p>  这只是个小测试实际情况肯定会有变化。等以后有需求再优化吧。</p>
+<p>  <a href="https://github.com/1224555781/QuadTree" target="_blank" rel="noopener">测试项目保存在了这儿</a></p>
+
+      
+    </div>
+    
+      
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+    
+  </section>
+  
+    
+    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+    
+    
+
+  
+
+
 	
 </div>
 <aside class='l_side'>

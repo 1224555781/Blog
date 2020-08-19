@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta name="renderer" content="webkit">
@@ -18,7 +16,7 @@
 
   <!-- 页面元数据 -->
   
-    <title>Tag: 日常学习 - MLB</title>
+    <title>QuadTree - MLB</title>
   
   
 
@@ -329,25 +327,12 @@
     <div class='body-wrapper'>
       
 
-
 <div class='l_main'>
   
-    
-      
-  <section class="post-list ">
-    
-      
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow reveal ">
+
   
+    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+      
 
 
   <section class='meta'>
@@ -357,11 +342,11 @@
       <div class="meta" id="header-meta">
         
           
-  <h2 class="title">
-    <a href="/2020/07/08/E4-%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/">
-      UE4 小知识点
+  <h1 class="title">
+    <a href="/2020/08/19/QuadTree/">
+      QuadTree
     </a>
-  </h2>
+  </h1>
 
 
         
@@ -382,14 +367,6 @@
           
             
               
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/UE4/' rel="nofollow">
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>UE4</p>
-    </a>
-  </div>
-
 
             
           
@@ -397,14 +374,9 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jul 8, 2020</p>
+    <p>发布于：Aug 19, 2020</p>
   </a>
 </div>
-
-            
-          
-            
-              
 
             
           
@@ -422,109 +394,58 @@
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="SetTimer中的lambda"><a href="#SetTimer中的lambda" class="headerlink" title="SetTimer中的lambda"></a>SetTimer中的lambda</h2><p>  如果引用到 local variable值时去使用lambda 函数 有几率触发UE4中的lambda BUG,就是不报任何错误,却不执行逻辑. 还有就是去lambda中获取GamePlayStatics中引用时会触发相同问题<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; Error   CameraManger有效  , ExecLambda 打印成功</span><br><span class="line">  </span><br><span class="line">  GetWorld()-&gt;GetTimerManager().SetTimer(Handle,FTimerDelegate::Lambda(this,&amp;UVRCore::FadeOutCamera,DurationTime,DelayTime,Color)</span><br><span class="line">&#x2F;*([&amp;]()</span><br><span class="line">&#123;</span><br><span class="line">	print(TEXT(&quot;ExecLambda&quot;))</span><br><span class="line">    APlayerCameraManager* CameraManagers&#x3D;static_cast&lt;APlayerCameraManager*&gt;(UGameplayStatics::GetPlayerCameraManager(this,0));</span><br><span class="line">    if (!CameraManagers)</span><br><span class="line">    &#123;</span><br><span class="line">    	print(TEXT(&quot;CameraManger Not Valid&quot;))</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    CameraManagers-&gt;StartCameraFade(1,0,DurationTime,Color,false,true);</span><br><span class="line">&#125;)*&#x2F;,1.f,false,DelayTime);</span><br></pre></td></tr></table></figure></p>
-<p>  他不行</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  GetWorld()-&gt;GetTimerManager().SetTimer(Handle,FTimerDelegate::CreateUObject(this,&amp;UVRCore::FadeOutCamera,DurationTime,DelayTime,Color)</span><br><span class="line">,1.f,false,DelayTime);</span><br></pre></td></tr></table></figure>
-<p>  他行</p>
-<h2 id="关于AI中的-Nav-agents使用问题"><a href="#关于AI中的-Nav-agents使用问题" class="headerlink" title="关于AI中的 Nav agents使用问题"></a>关于AI中的 Nav agents使用问题</h2><p> 定义三个代理</p>
-<p><img src="/2020/07/08/E4-%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/pasted-3.png" alt="三个代理"><br>并且都启用</p>
-<p><img src="/2020/07/08/E4-%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/pasted-4.png" alt="图片"></p>
-<p>在使用时并不是选择某一个去使用,check? 不行. 他会自动选择合适的去选择…很坑</p>
-<h1 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h1><p>经典起手 ———————————— As We Know  </p>
-<p>  UE4中的网络函数无返回值, 那就用引用和指针去赋值了..结果很不理想 下面给个示例,代码不重要<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">void AVRPlayerController::Muti_PlaySound_WithLocation_Implementation(UObject* WorldContext, USoundBase* Cue, const FSoundInfo&amp; SoundInfo,UAudioComponent* AudioComp)</span><br><span class="line">&#123;</span><br><span class="line">	&#x2F;&#x2F;下面是断点 </span><br><span class="line">	AudioComp &#x3D; UGameplayStatics::SpawnSoundAtLocation(WorldContext, Cue, SoundInfo.Location, 	FRotator::ZeroRotator, SoundInfo.Volume, SoundInfo.Pitch, SoundInfo.StartTime, SoundInfo.SoundAttention, nullptr, false);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>这段代码运行时会即时触发到断点. 但是在SpawnAtLoaction中的断点不是即时的延迟大概10ms的样子,所以赋值失败.<br>   　　所以赋值失败的原因就是网络函数是异步的，从一端到另一端总是需要时间的做不到即时响应，当它有值了，赋值代码却已经错过了．</p>
-<h1 id="旋转中的物理检测"><a href="#旋转中的物理检测" class="headerlink" title="旋转中的物理检测"></a>旋转中的物理检测</h1><p>　　最近做了个带抽屉的柜子，发现柜门在旋转时的Ｓｗｅｅｐ　压根就没用。后面看到了注释。。。这个还是坏的再到社区一看，老早就有人说了。给出了每帧启用刚体物理的方法。</p>
-<p>　　但是，我的选择是穿一点点没关系，反正柜子只能用一次抽屉开小点。。。看不出来。但是以后应该必然有需求。后面再来更新。
-　　</p>
-<h1 id="后续待更新"><a href="#后续待更新" class="headerlink" title="后续待更新"></a>后续待更新</h1>
-      
-    </div>
-    
-      
-    
-  </section>
-</article>
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <h1 id="四叉树"><a href="#四叉树" class="headerlink" title="四叉树"></a>四叉树</h1><p>　　<br>    　　前不久看了５１ｗｏｒｌｄ的一个官方直播。其中谈到了资源的调度主要是使用四叉树来判定资源如何调度。他们做的一个模拟真实世界，资源着实很宝贵。于是产生了学习一下四叉树的想法。　　</p>
+<p>　　ＬＯＤ的应用就是使用的四叉树吧，大胆猜测一波。在源码里我还没见过四叉树。但是八叉树倒是见过，构建寻路导航的时候用的八叉树三维构建嘛。特别是将寻路网格质量调高构建比较缓慢的时候是可以看见他的确是八叉树构建。</p>
+<p>　　先展现一下最后的测试结果<img src="https://cdn.jsdelivr.net/gh/1224555781/Img/QuadTree.png" alt="一棵树"></p>
+<h2 id="开始种树"><a href="#开始种树" class="headerlink" title="开始种树"></a>开始种树</h2><p>   树的结构体,需要4个子节点一个父节点即可，这只是颗简单的树需要的最基础的部分<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">   &#x2F;&#x2F;USTRUCT()</span><br><span class="line">struct FQuadNode</span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line">   &#x2F;&#x2F; GENERATED_USTRUCT_BODY()</span><br><span class="line">public:</span><br><span class="line">    float X;</span><br><span class="line">    float Y;</span><br><span class="line">    float Divide;</span><br><span class="line">    FVector Origin;</span><br><span class="line">    &#x2F;&#x2F;FQuadNode* ChildrenNode[2][2];</span><br><span class="line">    TArray&lt;FQuadNode*&gt;ChildrenNode ;</span><br><span class="line">    FQuadNode* ParentNode;</span><br><span class="line">    bool IsValidNode()</span><br><span class="line">    &#123;</span><br><span class="line">        return !ParentNode ? NULL : FMath::Abs( X &#x2F; 2 &#x2F;*Origin.X - ParentNode-&gt;Origin.X*&#x2F;)  &lt;&#x3D; Divide &amp;&amp; FMath::Abs( Y &#x2F; 2 &#x2F;*Origin.Y - ParentNode-&gt;Origin.Y*&#x2F;)&lt;&#x3D;Divide;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    bool operator &#x3D;&#x3D;(const FQuadNode&amp; Other) const</span><br><span class="line">    &#123;</span><br><span class="line">        return Origin &#x3D;&#x3D; Other.Origin;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    FQuadNode()</span><br><span class="line">        :X(1000),Y(1000),Divide(100)</span><br><span class="line">    &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;Init Child Node</span><br><span class="line">    FQuadNode(float InX,float InY,float InDivide,FVector InOrigin)</span><br><span class="line">        :X(InX),Y(InY),Divide(InDivide),Origin(InOrigin)</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>树的构建，代码只放核心部分。<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> inline void FQuadTree::InitQuandTree(UWorld* world,FQuadNode* Node,FQuadNode* InParentNode)</span><br><span class="line">&#123;</span><br><span class="line">    Node-&gt;ParentNode &#x3D; InParentNode;</span><br><span class="line">    if (Node-&gt;IsValidNode())</span><br><span class="line">    &#123;</span><br><span class="line">        DrawDebugSphere(world,Node-&gt;Origin,15.f,16,FColor::Yellow,true);</span><br><span class="line">        DrawQuandTree(world,Node);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    if(Node &#x3D;&#x3D; NULL)</span><br><span class="line">        return;</span><br><span class="line">    CreateChildNode(Node);</span><br><span class="line">    for (auto a : Node-&gt;ChildrenNode)</span><br><span class="line">    &#123;</span><br><span class="line">        InitQuandTree( world, a ,Node);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>   　　树构建完成后需要知道目标在哪吧，直接每帧遍历是不可能的，卡成ppt（我试过了）。判断距离，判断方位。结合一下基本就是我想到最好的解决方案了。但是多给点时间我也不一定能想到更好的方案。
+     　　</p>
+<p>　　当监测目标进入四叉树区域后开始执行判定人物位置的方位。；例如　＂田＂　这就是四叉树那么递归遍历人物处于　“田”　的哪一区域。直到达到最小区域，然后开始执行判定人物离当前区域中心点的距离。但是这里有瑕疵，有部分灰色区域如图<img src="https://cdn.jsdelivr.net/gh/1224555781/Img/quadtree2.png" alt="丑陋的图"><br>  EMMM红色 红色就是灰色区域会一直执行判定，这点有待改善。下面是两个判定<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">  bool UQuadTreeComponent::CharIsInNodeArea(FQuadNode* Node , FVector Target,float Real_X , float Real_Y) const</span><br><span class="line">&#123;</span><br><span class="line">	return  Target.X &lt;&#x3D; (Node-&gt;Origin.X + Real_X)</span><br><span class="line">    &amp;&amp; Target.Y &lt;&#x3D; ( Node-&gt;Origin.Y + Real_Y)</span><br><span class="line">    &amp;&amp; Target.X &gt;&#x3D; (Node-&gt;Origin.X - Real_X)</span><br><span class="line">    &amp;&amp; Target.Y &gt;&#x3D; (Node-&gt;Origin.Y - Real_Y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">FQuadNode* UQuadTreeComponent::CharIsInChildArea(FQuadNode* Node , FVector CharLoc ) const</span><br><span class="line">&#123;</span><br><span class="line">	FQuadNode* RET &#x3D; Node;</span><br><span class="line">	if (Node-&gt;ChildrenNode.Num() &#x3D;&#x3D; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		return RET;</span><br><span class="line">	&#125;</span><br><span class="line">	if (Node-&gt;Origin.X &lt;&#x3D; CharLoc.X &amp;&amp; Node-&gt;Origin.Y &lt;&#x3D; CharLoc.Y)</span><br><span class="line">	&#123;</span><br><span class="line">		RET &#x3D; Node-&gt;ChildrenNode[0];</span><br><span class="line">	&#125;</span><br><span class="line">	else if (Node-&gt;Origin.X &gt;&#x3D; CharLoc.X &amp;&amp; Node-&gt;Origin.Y &lt;&#x3D; CharLoc.Y)</span><br><span class="line">	&#123;</span><br><span class="line">		RET &#x3D; Node-&gt;ChildrenNode[1];</span><br><span class="line">	&#125;</span><br><span class="line">	else if (Node-&gt;Origin.X &gt;&#x3D; CharLoc.X &amp;&amp; Node-&gt;Origin.Y &gt;&#x3D; CharLoc.Y)</span><br><span class="line">	&#123;</span><br><span class="line">		RET &#x3D; Node-&gt;ChildrenNode[2];</span><br><span class="line">	&#125;</span><br><span class="line">	else if (Node-&gt;Origin.X &lt;&#x3D; CharLoc.X &amp;&amp; Node-&gt;Origin.Y &gt;&#x3D; CharLoc.Y)</span><br><span class="line">	&#123;</span><br><span class="line">		RET &#x3D; Node-&gt;ChildrenNode[3];</span><br><span class="line">	&#125;</span><br><span class="line">	return  RET;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>   于是乎上述代码在极限情况下达到了时间复杂度为树深度的简单算法并且不会每帧去疯狂运算。</p>
+<p>  这只是个小测试实际情况肯定会有变化。等以后有需求再优化吧。</p>
+<p>  <a href="https://github.com/1224555781/QuadTree" target="_blank" rel="noopener">测试项目保存在了这儿</a></p>
 
-          </div>
-        
-      
-    
-  </section>
-  
-    
-    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-    
-    
-
-  
-
-
-    
-  
-</div>
-<aside class='l_side'>
-  
+          
+            <div class='article_footer'>
+              
+                
   
     
     
 
-<section class="widget blogger shadow desktop mobile">
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
   <div class='content'>
     
-      
-        <a class='avatar flat-box' href='/about/'>
-          <img no-lazy src='https://cdn.jsdelivr.net/gh/1224555781/Img/animals-731213_640.jpg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">MLB</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
+      <blockquote>
         
           
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
           
         
           
-            <a href="/mlb996.top"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
+            <p>本文永久链接是：<a href=http://mlb996.top/2020/08/19/QuadTree/>http://mlb996.top/2020/08/19/QuadTree/</a></p>
           
         
-          
-            <a href="https://github.com/1224555781"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-          
-            <a href="https://music.163.com/#/user/home?id=63035382"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-      </div>
+      </blockquote>
     
   </div>
 </section>
@@ -534,58 +455,183 @@
   
     
     
+
+<section class="widget qrcode  desktop mobile">
   
 
-  <section class="widget category shadow desktop">
+  <div class='content article-entry'>
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-08-19T19:29:02+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Aug 19, 2020</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://mlb996.top/2020/08/19/QuadTree/&title=QuadTree - MLB&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://mlb996.top/2020/08/19/QuadTree/&title=QuadTree - MLB&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=http://mlb996.top/2020/08/19/QuadTree/&title=QuadTree - MLB&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+            
+              <a class='next' href='/2020/07/16/R%E4%B8%AD%E6%97%8B%E8%BD%AC%E7%89%A9%E4%BD%93-Follow-MotionController/'>
+                <p class='title'>VR中旋转物体(Follow MotionController)<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在VR中通常会有门窗柜子之类不需要移动只需要旋转的物体. 这里记录一个算法计算旋转.这并不多余,虽然可以使用到...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box reveal comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'QuadTree',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+  
+
+  
+    
+    
+
+
+  <section class="widget toc-wrapper shadow desktop mobile">
     
   <header>
     
-      <a href='/categories'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/MLB-527/" href="/categories/MLB-527/"
-            id="categoriesMLB-527"
-            ><div class='name'>MLB_527</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/UE4/" href="/categories/UE4/"
-            id="categoriesUE4"
-            ><div class='name'>UE4</div><div class='badge'>(4)</div></a></li>
-        
-      </ul>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开始种树"><span class="toc-text">开始种树</span></a></li></ol>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/tags'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/AI/" style="font-size: 14px; color: #999">AI</a> <a href="/tags/test/" style="font-size: 14px; color: #999">test</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0/" style="font-size: 14px; color: #999">日常学习</a>
-    </div>
-  </section>
-
-
-  
 
   
 
@@ -798,6 +844,60 @@
 
 
 
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
+
+  
+  <script>
+  var GUEST_INFO = ['nick','mail','link'];
+  var meta = 'nick,mail,link'.split(',').filter(function(item){
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick','mail','link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function(item){
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+  var valine = new Valine();
+  function emoji(path, idx, ext) {
+      return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  valine.init({
+    el: '#valine_container',
+    meta: meta,
+    
+    appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+    appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+    placeholder: "快来评论吧~",
+    pageSize:'10',
+    avatar:'robohash',
+    lang:'zh-cn',
+    visitor: 'true',
+    highlight: 'true',
+    mathJax: 'false',
+    enableQQ: 'true',
+    requiredFields: requiredFields,
+    emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+    emojiMaps: emojiMaps
+  })
+  </script>
 
 
 
